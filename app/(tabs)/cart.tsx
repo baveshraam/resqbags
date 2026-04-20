@@ -32,7 +32,7 @@ export default function CartScreen() {
           </View>
           <Text style={styles.emptyTitle}>Your cart is waiting for a rescue.</Text>
           <Text style={styles.emptySub}>Find a bag nearby and start your food-saving journey.</Text>
-          <TouchableOpacity style={styles.exploreBtn} onPress={() => router.push('/(tabs)/index')}>
+          <TouchableOpacity style={styles.exploreBtn} onPress={() => router.push('/')}>
             <Text style={styles.exploreBtnText}>Explore Rescues</Text>
           </TouchableOpacity>
         </View>

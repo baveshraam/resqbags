@@ -9,6 +9,7 @@ import {
   Image,
   Animated,
   Platform,
+  Alert,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Bell, ChevronDown, Search, Leaf } from 'lucide-react-native';
@@ -51,8 +52,12 @@ export default function HomeScreen() {
       >
         {/* Header */}
         <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
-          <TouchableOpacity style={styles.locationBtn} activeOpacity={0.7}>
-            <Text style={styles.locationLabel}>Delivering to</Text>
+          <TouchableOpacity
+            style={styles.locationBtn}
+            activeOpacity={0.7}
+            onPress={() => Alert.alert('Location selector tapped')}
+          >
+            <Text style={styles.locationLabel}>Pickup near</Text>
             <View style={styles.locationRow}>
               <Text style={styles.locationText}>Indiranagar, Bengaluru</Text>
               <ChevronDown size={16} color={Colors.forestGreen} />
@@ -122,7 +127,7 @@ export default function HomeScreen() {
         {/* Nearby Rescues */}
         <View style={styles.section}>
           <View style={styles.sectionPad}>
-            <SectionHeader title="Fresh Stories Near You" onSeeAll={() => router.push('/(tabs)/search')} />
+            <SectionHeader title="What's Poppin' Near You" />
           </View>
           {nearby.map(bag => (
             <View key={bag.id} style={styles.cardPad}>

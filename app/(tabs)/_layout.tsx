@@ -1,9 +1,10 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Platform } from 'react-native';
 import { Hop as Home, Search, ShoppingBag, Users, User } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useCart } from '@/store/CartContext';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 function CartTabIcon({ color, size }: { color: string; size: number }) {
   const { totalItems } = useCart();
@@ -20,11 +21,20 @@ function CartTabIcon({ color, size }: { color: string; size: number }) {
 }
 
 export default function TabLayout() {
+  const { bottom } = useSafeAreaInsets();
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: tabStyles.tabBar,
+        tabBarStyle: [
+          tabStyles.tabBar,
+          {
+            height: (Platform.OS === 'web' ? 76 : 64) + bottom,
+            paddingBottom: bottom + (Platform.OS === 'web' ? 12 : 8),
+            paddingTop: Platform.OS === 'web' ? 10 : 8,
+          },
+        ],
         tabBarActiveTintColor: Colors.forestGreen,
         tabBarInactiveTintColor: Colors.warmTaupe,
         tabBarLabelStyle: tabStyles.tabLabel,
@@ -86,10 +96,13 @@ const tabStyles = StyleSheet.create({
   },
   tabLabel: {
     fontSize: 11,
+    lineHeight: 13,
     fontFamily: 'DMSans-Medium',
   },
   tabItem: {
-    paddingTop: 2,
+    paddingTop: Platform.OS === 'web' ? 0 : 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   cartBadge: {
     position: 'absolute',

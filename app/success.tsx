@@ -159,7 +159,7 @@ export default function SuccessScreen() {
       <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
         <TouchableOpacity
           style={styles.homeBtn}
-          onPress={() => router.replace('/(tabs)/index')}
+          onPress={() => router.replace('/')}
           activeOpacity={0.85}
         >
           <Home size={18} color={Colors.offWhite} />

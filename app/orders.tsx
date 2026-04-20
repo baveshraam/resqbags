@@ -144,7 +144,7 @@ export default function OrdersScreen() {
           <View style={styles.emptyState}>
             <Text style={styles.emptyTitle}>Your story is waiting.</Text>
             <Text style={styles.emptySub}>You haven't rescued any bags yet. Find one near you!</Text>
-            <TouchableOpacity style={styles.exploreBtn} onPress={() => router.replace('/(tabs)/index')}>
+            <TouchableOpacity style={styles.exploreBtn} onPress={() => router.replace('/')}>
               <Text style={styles.exploreBtnText}>Explore Rescues</Text>
             </TouchableOpacity>
           </View>

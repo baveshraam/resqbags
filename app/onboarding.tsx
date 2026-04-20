@@ -81,7 +81,7 @@ export default function OnboardingScreen() {
     setOtp(newOtp);
     if (val && idx < 3) otpRefs.current[idx + 1]?.focus();
     if (newOtp.every(d => d !== '')) {
-      setTimeout(() => router.replace('/(tabs)/index'), 300);
+      setTimeout(() => router.replace('/'), 300);
     }
   };
 
@@ -138,7 +138,7 @@ export default function OnboardingScreen() {
 
               <TouchableOpacity
                 style={styles.googleBtn}
-                onPress={() => router.replace('/(tabs)/index')}
+                onPress={() => router.replace('/')}
                 activeOpacity={0.85}
               >
                 <Text style={styles.googleBtnText}>Continue with Google</Text>

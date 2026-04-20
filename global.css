@@ -1,0 +1,17 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  /* dvh = dynamic viewport height: excludes mobile browser chrome (address bar etc.)
+     This prevents the tab bar from being clipped on narrow/mobile viewports. */
+  height: 100dvh;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+  height: 100dvh;
+}

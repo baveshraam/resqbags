@@ -1,3 +1,4 @@
+import '../global.css';
 import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -42,17 +43,10 @@ export default function RootLayout() {
   return (
     <CartProvider>
       <SavedProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="onboarding" />
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="bag/[id]" />
-          <Stack.Screen name="checkout" />
-          <Stack.Screen name="success" />
-          <Stack.Screen name="orders" />
-          <Stack.Screen name="+not-found" />
-        </Stack>
+        <Stack screenOptions={{ headerShown: false }} />
         <StatusBar style="dark" />
       </SavedProvider>
     </CartProvider>
   );
 }
+
