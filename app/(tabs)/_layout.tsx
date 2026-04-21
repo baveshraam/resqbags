@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { StyleSheet, View, Text, Platform } from 'react-native';
-import { Hop as Home, Search, ShoppingBag, Users, User } from 'lucide-react-native';
+import { Home, Search, ShoppingBag, Users, User } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useCart } from '@/store/CartContext';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -44,7 +44,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Discover',
+          title: 'Home',
           tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
         }}
       />

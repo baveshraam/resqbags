@@ -223,15 +223,15 @@ const styles = StyleSheet.create({
   },
   sortChip: {
     backgroundColor: Colors.softBeige,
-    borderRadius: 20,
-    paddingHorizontal: 14,
-    paddingVertical: 7,
+    borderRadius: 24,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
   },
   sortChipActive: {
     backgroundColor: Colors.forestGreen,
   },
   sortChipText: {
-    fontSize: 13,
+    fontSize: 14,
     fontFamily: 'DMSans-Medium',
     color: Colors.warmStone,
   },

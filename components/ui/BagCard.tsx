@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -26,6 +26,7 @@ export function BagCard({ bag, horizontal = false }: BagCardProps) {
   const { isSaved, toggleSaved } = useSaved();
   const heartScale = useRef(new Animated.Value(1)).current;
   const cartScale = useRef(new Animated.Value(1)).current;
+  const [quantity, setQuantity] = useState(0);
 
   const discount = Math.round(((bag.originalPrice - bag.rescuePrice) / bag.originalPrice) * 100);
   const saved = isSaved(bag.id);
@@ -40,11 +41,15 @@ export function BagCard({ bag, horizontal = false }: BagCardProps) {
 
   const handleAddToCart = () => {
     addToCart(bag);
+    setQuantity(1);
     Animated.sequence([
       Animated.spring(cartScale, { toValue: 0.9, useNativeDriver: true }),
       Animated.spring(cartScale, { toValue: 1, useNativeDriver: true }),
     ]).start();
   };
+
+  const handleIncrement = () => setQuantity(prev => prev + 1);
+  const handleDecrement = () => setQuantity(prev => Math.max(0, prev - 1));
 
   if (horizontal) {
     return (
@@ -149,12 +154,24 @@ export function BagCard({ bag, horizontal = false }: BagCardProps) {
             </View>
             <Text style={styles.savingsText}>You save ₹{bag.originalPrice - bag.rescuePrice}</Text>
           </View>
-          <Animated.View style={{ transform: [{ scale: cartScale }] }}>
-            <TouchableOpacity style={styles.addBtn} onPress={handleAddToCart}>
-              <ShoppingBag size={15} color={Colors.offWhite} />
-              <Text style={styles.addBtnText}>Rescue</Text>
-            </TouchableOpacity>
-          </Animated.View>
+          {quantity > 0 ? (
+            <Animated.View style={[styles.quantityControl, { transform: [{ scale: cartScale }] }]}>
+              <TouchableOpacity onPress={handleDecrement} style={styles.qtyBtn}>
+                <Text style={styles.qtyBtnText}>-</Text>
+              </TouchableOpacity>
+              <Text style={styles.qtyText}>{quantity}</Text>
+              <TouchableOpacity onPress={handleIncrement} style={styles.qtyBtn}>
+                <Text style={styles.qtyBtnText}>+</Text>
+              </TouchableOpacity>
+            </Animated.View>
+          ) : (
+            <Animated.View style={{ transform: [{ scale: cartScale }] }}>
+              <TouchableOpacity style={styles.addBtn} onPress={handleAddToCart}>
+                <ShoppingBag size={15} color={Colors.offWhite} />
+                <Text style={styles.addBtnText}>Rescue</Text>
+              </TouchableOpacity>
+            </Animated.View>
+          )}
         </View>
       </View>
     </TouchableOpacity>
@@ -309,7 +326,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
-    backgroundColor: Colors.sageGreen,
+    backgroundColor: Colors.forestGreen,
     borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 10,
@@ -318,6 +335,35 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: 'DMSans-Bold',
     color: Colors.offWhite,
+  },
+  quantityControl: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Colors.forestGreen,
+    borderRadius: 14,
+    paddingHorizontal: 6,
+    paddingVertical: 6,
+    gap: 12,
+  },
+  qtyBtn: {
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  qtyBtnText: {
+    color: Colors.offWhite,
+    fontSize: 14,
+    fontFamily: 'DMSans-Bold',
+  },
+  qtyText: {
+    color: Colors.offWhite,
+    fontSize: 14,
+    fontFamily: 'DMSans-Bold',
+    minWidth: 16,
+    textAlign: 'center',
   },
   // Horizontal card styles
   horizontalCard: {

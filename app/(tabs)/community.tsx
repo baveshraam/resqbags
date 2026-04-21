@@ -11,6 +11,7 @@ import { Heart, Share2, Award, TrendingUp, Users, Gift } from 'lucide-react-nati
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/colors';
 import { COMMUNITY_POSTS, BADGES } from '@/constants/data';
+import { ImpactStats } from '@/components/ui/ImpactStats';
 
 const LEADERBOARD = [
   { rank: 1, name: 'Priya S.', city: 'Bengaluru', rescues: 47, badge: '🥇' },
@@ -37,7 +38,7 @@ export default function CommunityScreen() {
       contentContainerStyle={styles.scroll}
     >
       {/* Header */}
-      <Text style={styles.pageTitle}>Our Story</Text>
+      <Text style={styles.pageTitle}>Community Story</Text>
       <Text style={styles.pageSub}>Thousands of neighbors rescuing alongside you.</Text>
 
       {/* Personal Impact */}
@@ -60,30 +61,12 @@ export default function CommunityScreen() {
         </View>
       </View>
 
-      {/* Community Stats */}
-      <View style={styles.communityStats}>
-        <View style={styles.statItem}>
-          <Users size={18} color={Colors.sageGreen} />
-          <Text style={styles.statValue}>3,247</Text>
-          <Text style={styles.statLabel}>Active this week</Text>
-        </View>
-        <View style={styles.statDivider} />
-        <View style={styles.statItem}>
-          <TrendingUp size={18} color={Colors.goldenAmber} />
-          <Text style={styles.statValue}>8.4k</Text>
-          <Text style={styles.statLabel}>Meals saved today</Text>
-        </View>
-        <View style={styles.statDivider} />
-        <View style={styles.statItem}>
-          <Award size={18} color={Colors.softCoral} />
-          <Text style={styles.statValue}>240+</Text>
-          <Text style={styles.statLabel}>Partner restaurants</Text>
-        </View>
-      </View>
+      {/* Global Impact */}
+      <ImpactStats />
 
       {/* Badges */}
       <View style={styles.badgesSection}>
-        <Text style={styles.sectionTitle}>Your Badges</Text>
+        <Text style={styles.sectionTitle}>ResQRun Badges</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.badgesScroll}>
           {BADGES.map(badge => (
             <View key={badge.id} style={[styles.badgeCard, !badge.earned && styles.badgeCardLocked]}>
@@ -110,7 +93,7 @@ export default function CommunityScreen() {
 
       {/* Community Feed */}
       <View style={styles.feedSection}>
-        <Text style={styles.sectionTitle}>Neighbor Stories</Text>
+        <Text style={styles.sectionTitle}>Stories from the Community</Text>
         {COMMUNITY_POSTS.map(post => {
           const liked = likedPosts.includes(post.id);
           const likeCount = post.likes + (liked ? 1 : 0);
@@ -151,7 +134,7 @@ export default function CommunityScreen() {
 
       {/* Leaderboard */}
       <View style={styles.leaderboardSection}>
-        <Text style={styles.sectionTitle}>Top Rescuers This Week</Text>
+        <Text style={styles.sectionTitle}>ResQRun Leaderboard</Text>
         <Text style={styles.leaderSub}>A community high-five for our heroes.</Text>
         {LEADERBOARD.map(item => (
           <View key={item.rank} style={styles.leaderRow}>

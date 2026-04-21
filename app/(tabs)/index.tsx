@@ -18,7 +18,6 @@ import { Colors } from '@/constants/colors';
 import { RESCUE_BAGS } from '@/constants/data';
 import { BagCard } from '@/components/ui/BagCard';
 import { FilterChips } from '@/components/ui/FilterChips';
-import { ImpactStats } from '@/components/ui/ImpactStats';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { HowItWorks } from '@/components/ui/HowItWorks';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -40,7 +39,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.root}>
-      <Animated.View style={[styles.stickyHeader, { paddingTop: insets.top, opacity: headerOpacity }]}>
+      <Animated.View pointerEvents="none" style={[styles.stickyHeader, { paddingTop: insets.top, opacity: headerOpacity }]}>
         <Text style={styles.stickyTitle}>ResQBag</Text>
       </Animated.View>
 
@@ -106,8 +105,7 @@ export default function HomeScreen() {
           </View>
         </LinearGradient>
 
-        {/* Impact Stats */}
-        <ImpactStats />
+        {/* Impact Stats Removed from Home */}
 
         {/* Search Bar */}
         <TouchableOpacity
@@ -300,7 +298,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   primaryBtn: {
-    backgroundColor: Colors.sageGreen,
+    backgroundColor: Colors.forestGreen,
     borderRadius: 14,
     paddingHorizontal: 18,
     paddingVertical: 12,
@@ -318,7 +316,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 12,
     borderWidth: 1.5,
-    borderColor: Colors.sageGreen,
+    borderColor: Colors.forestGreen,
     alignItems: 'center',
   },
   outlineBtnText: {
