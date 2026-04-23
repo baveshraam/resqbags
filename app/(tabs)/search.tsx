@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.forestGreen,
   },
   sortChipText: {
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'DMSans-Medium',
     color: Colors.warmStone,
   },
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.sageGreen,
   },
   filterChipText: {
-    fontSize: 13,
+    fontSize: 15,
     fontFamily: 'DMSans-Medium',
     color: Colors.warmStone,
   },

@@ -3,7 +3,7 @@ import { CartItem, RescueBag } from '@/types';
 
 interface CartContextType {
   items: CartItem[];
-  addToCart: (bag: RescueBag) => void;
+  addToCart: (bag: RescueBag, quantityToAdd?: number) => void;
   removeFromCart: (bagId: string) => void;
   updateQuantity: (bagId: string, quantity: number) => void;
   clearCart: () => void;
@@ -16,15 +16,16 @@ const CartContext = createContext<CartContextType | null>(null);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
 
-  const addToCart = (bag: RescueBag) => {
+  const addToCart = (bag: RescueBag, quantityToAdd: number = 1) => {
     setItems(prev => {
       const existing = prev.find(i => i.bag.id === bag.id);
       if (existing) {
+        const newQty = Math.min(bag.stockLeft, existing.quantity + quantityToAdd);
         return prev.map(i =>
-          i.bag.id === bag.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.bag.id === bag.id ? { ...i, quantity: newQty } : i
         );
       }
-      return [...prev, { bag, quantity: 1 }];
+      return [...prev, { bag, quantity: Math.min(bag.stockLeft, quantityToAdd) }];
     });
   };
 
@@ -38,7 +39,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       return;
     }
     setItems(prev =>
-      prev.map(i => (i.bag.id === bagId ? { ...i, quantity } : i))
+      prev.map(i => (i.bag.id === bagId ? { ...i, quantity: Math.min(i.bag.stockLeft, quantity) } : i))
     );
   };
 

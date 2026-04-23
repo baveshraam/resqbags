@@ -43,7 +43,7 @@ export default function BagDetailScreen() {
   };
 
   const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) addToCart(bag);
+    addToCart(bag, quantity);
     Animated.sequence([
       Animated.spring(cartScale, { toValue: 0.9, useNativeDriver: true }),
       Animated.spring(cartScale, { toValue: 1, useNativeDriver: true }),
@@ -159,27 +159,7 @@ export default function BagDetailScreen() {
             <Text style={styles.allergenText}>{bag.allergenNote}</Text>
           </View>
 
-          {/* Impact */}
-          <View style={styles.impactCard}>
-            <Text style={styles.impactTitle}>Your Rescue Impact</Text>
-            <Text style={styles.impactStat}>
-              Rescuing this bag saves approximately <Text style={styles.impactHighlight}>{co2}kg of CO₂</Text> — like charging your phone 280 times.
-            </Text>
-            <View style={styles.impactRow}>
-              <View style={styles.impactItem}>
-                <Text style={styles.impactValue}>₹{savings}</Text>
-                <Text style={styles.impactLabel}>Saved</Text>
-              </View>
-              <View style={styles.impactItem}>
-                <Text style={styles.impactValue}>{co2}kg</Text>
-                <Text style={styles.impactLabel}>CO₂ Prevented</Text>
-              </View>
-              <View style={styles.impactItem}>
-                <Text style={styles.impactValue}>1</Text>
-                <Text style={styles.impactLabel}>Meal Rescued</Text>
-              </View>
-            </View>
-          </View>
+          {/* Impact section removed */}
 
           {/* About Restaurant */}
           <Text style={styles.sectionTitle}>About the Restaurant</Text>
@@ -578,7 +558,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   addToCartBtn: {
-    backgroundColor: Colors.sageGreen,
+    backgroundColor: Colors.forestGreen,
     borderRadius: 16,
     paddingVertical: 14,
     flexDirection: 'row',

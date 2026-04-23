@@ -426,7 +426,7 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   homeBtn: {
-    backgroundColor: Colors.sageGreen,
+    backgroundColor: Colors.forestGreen,
     borderRadius: 18,
     paddingVertical: 16,
     flexDirection: 'row',

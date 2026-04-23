@@ -53,7 +53,7 @@ export default function CartScreen() {
               <Text style={styles.cartRestName}>{item.bag.restaurant.name}</Text>
               <Text style={styles.cartBagName}>{item.bag.name}</Text>
               {item.bag.stockLeft <= 2 && (
-                <Text style={styles.lowStock}>Only {item.bag.stockLeft} left — don't let it go to waste.</Text>
+                <Text style={styles.lowStock}>Only {item.bag.stockLeft} left!</Text>
               )}
               <View style={styles.cartBottom}>
                 <View style={styles.qtyRow}>
@@ -73,7 +73,7 @@ export default function CartScreen() {
                 </View>
                 <View style={styles.priceCol}>
                   <Text style={styles.itemTotal}>₹{item.bag.rescuePrice * item.quantity}</Text>
-                  <TouchableOpacity onPress={() => removeFromCart(item.bag.id)}>
+                  <TouchableOpacity style={styles.releaseBtn} onPress={() => removeFromCart(item.bag.id)}>
                     <Text style={styles.releaseText}>Release</Text>
                   </TouchableOpacity>
                 </View>
@@ -229,8 +229,16 @@ const styles = StyleSheet.create({
     fontFamily: 'DMSans-Bold',
     color: Colors.forestGreen,
   },
+  releaseBtn: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: Colors.softCoral,
+    marginTop: 2,
+  },
   releaseText: {
-    fontSize: 12,
+    fontSize: 11,
     fontFamily: 'DMSans-Medium',
     color: Colors.softCoral,
   },
@@ -329,7 +337,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    backgroundColor: Colors.sageGreen,
+    backgroundColor: Colors.forestGreen,
     borderRadius: 16,
     paddingHorizontal: 20,
     paddingVertical: 14,

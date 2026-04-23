@@ -99,7 +99,7 @@ export default function HomeScreen() {
             >
               <Text style={styles.primaryBtnText}>Explore Near Me</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.outlineBtn} activeOpacity={0.85}>
+            <TouchableOpacity style={styles.outlineBtn} onPress={() => router.push('/(tabs)/community')} activeOpacity={0.85}>
               <Text style={styles.outlineBtnText}>Our Story</Text>
             </TouchableOpacity>
           </View>
